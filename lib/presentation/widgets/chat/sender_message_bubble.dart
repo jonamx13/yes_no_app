@@ -25,8 +25,7 @@ class SenderMessageBubble extends StatelessWidget {
 
         _ImageBubble(),
 
-        SizedBox(height: 10)
-        //Todo: image
+        const SizedBox(height: 10)
       ],
     );
   }
@@ -40,10 +39,20 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Image.network(
-            'https://yesno.wtf/assets/no/3-80a6f5b5d6684674bcfeda34accca4e1.gif',
-            width: size.width * 0.7,
-            height: 150,
-            fit: BoxFit.cover,
-            ));
+          'https://yesno.wtf/assets/no/3-80a6f5b5d6684674bcfeda34accca4e1.gif',
+          width: size.width * 0.7,
+          height: 150,
+          fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+
+            return Container(
+              width: size.width * 0.7,
+              height: 150,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: const Text('The hunter is sending an image'),
+            );
+          },
+        ));
   }
 }
