@@ -21,8 +21,8 @@ class ChatScreen extends StatelessWidget {
                 'https://i.pinimg.com/474x/a1/05/5b/a1055bf9d2ac9d22512381cdb6f2078b.jpg'),
           ),
         ),
-        title: const Text('My Dear Title'),
-        centerTitle: true,
+        title: const Text('My Dear Hunter'),
+        centerTitle: false,
       ),
       body: _ChatView(),
     );
@@ -41,6 +41,7 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
+                    controller:chatProvider.chatScrollController ,
                     itemCount: chatProvider.messageList.length,
                     itemBuilder: (context, index) {
                       final message = chatProvider.messageList[index];
